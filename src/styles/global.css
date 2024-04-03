@@ -1,0 +1,279 @@
+:root {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color-scheme: dark light;
+
+  --clr-foreground: hsl(0 0% 0%);
+  --clr-background: hsl(0 0% 100%);
+
+  --text-light-primary: #121212;
+  --text-light-secondary: #828282;
+  --bg-light-primary: #ffffff;
+  --bg-light-secondary: #f8f8f8;
+  --bg-light-secondary-darker: #f0f0f0;
+
+  --text-primary: #ededed;
+  --text-secondary: #a0a0a0;
+  --bg-primary: #161616;
+  --bg-secondary: #1c1c1c;
+  --bg-secondary-darker: #393939;
+
+  --font-size-regular: 16px;
+  --font-size-large: 20px;
+  --font-size-xl: 32px;
+  --font-size-small: 14px;
+}
+
+.light-theme {
+  --clr-foreground: hsl(0 0% 0%);
+  --clr-background: hsl(0 0% 100%);
+
+  h1 > span {
+    color: var(--bg-secondary-darker);
+  }
+}
+
+.dark-theme {
+  --clr-background: hsl(0 0% 0%);
+  --clr-foreground: hsl(0 0% 100%);
+
+  h1 {
+    color: var(--text-primary);
+  }
+
+  h1 > .hero-second-heading {
+    color: var(--text-secondary);
+  }
+}
+
+/* Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Typographic tweaks! Add accessible line-height Improve text rendering */
+html,
+body {
+  height: 100;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* Create a root stacking context */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+body {
+  background: var(--clr-background);
+  color: var(--clr-foreground);
+}
+
+#theme-toggle {
+  cursor: pointer;
+  background: 0;
+  border: 0;
+  opacity: 0.8;
+  padding: 0.5rem;
+  border-radius: 50%;
+  position: relative;
+  isolation: isolate;
+}
+
+#theme-toggle svg {
+  fill: var(--clr-foreground);
+}
+
+#theme-toggle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: hsla(0, 60%, 1%, 0.2);
+  border-radius: inherit;
+  transform: scale(0);
+  opacity: 0;
+  z-index: -1;
+}
+
+.light-theme #theme-toggle::before {
+  animation: pulseToLight 650ms ease-out;
+}
+
+.dark-theme #theme-toggle::before {
+  animation: pulseToDark 650ms ease-out;
+}
+
+#theme-toggle::after {
+  content: attr(aria-label);
+  position: absolute;
+  color: var(--clr-background);
+  background: var(--clr-foreground);
+  width: max-content;
+  font-size: 0.8rem;
+  left: 0;
+  right: 0;
+  top: 95%;
+  margin: 0 auto;
+  padding: 0.2em 0.8em;
+  border-radius: 0.125em;
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: top;
+  transition: transform 0ms linear 100ms, opacity 100ms linear;
+}
+
+#theme-toggle:hover,
+#theme-toggle:focus {
+  outline: 0;
+  opacity: 1;
+  background: hsl(0 0% 50% / 0.15);
+}
+
+#theme-toggle:hover::after,
+#theme-toggle:focus-visible::after {
+  opacity: 0.7;
+  transform: scale(1);
+  transition: transform 70ms linear, opacity 70ms linear;
+}
+
+.toggle-circle {
+  transition: transform 500ms ease-out;
+}
+
+.light-theme .toggle-circle {
+  transform: translateX(-15%);
+}
+
+.toggle-sun {
+  transform-origin: center center;
+  transition: transform 750ms cubic-bezier(0.11, 0.14, 0.29, 1.32);
+}
+
+.light-theme .toggle-sun {
+  transform: rotate(0.5turn);
+}
+
+@keyframes pulseToLight {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  10% {
+    transform: scale(1);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseToDark {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  10% {
+    transform: scale(1);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* Utility Classes */
+
+.text-color-primary {
+  color: var(--text-primary);
+}
+
+.text-color-light-primary {
+  color: var(--text-light-primary);
+}
+
+.text-color-secondary {
+  color: var(--text-secondary);
+}
+
+.text-white {
+  color: var(--bg-light-primary);
+}
+
+.text-small {
+  font-size: var(--font-size-small);
+}
+
+.text-regular {
+  font-size: var(--font-size-regular);
+}
+
+.text-large {
+  font-size: var(--font-size-large);
+}
+
+/* Contact classes */
+
+/* Spacing */
+.medium-margin-bottom {
+  margin-bottom: 6vh;
+}
