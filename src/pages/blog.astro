@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BlogLayout from "../layouts/BlogLayout.astro";
 import BlogPost from "../components/BlogPost.astro";
 import { formatBlogPosts } from "../scripts/utils";
 
@@ -7,16 +7,93 @@ const allPosts = await Astro.glob("../pages/posts/*.md");
 const formattedPosts = formatBlogPosts(allPosts, {
   limit: 1,
 });
-const pageTitle = "My Astro Learning Blog";
 ---
 
-<BaseLayout pageTitle={pageTitle}>
-  <p>This is where I will post about my journey learning Astro.</p>
-  <ul>
-    {
-      formattedPosts.map((post) => (
-        <BlogPost url={post.url} title={post.frontmatter.title} />
-      ))
-    }
-  </ul>
-</BaseLayout>
+<BlogLayout>
+  <main>
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="column-100">
+            <h1>
+              Blog
+              <br />
+              <span>
+                {
+                  formattedPosts.map((post) => (
+                    <BlogPost
+                      title={post.frontmatter.date.toString().slice(0, 10)}
+                    />
+                  ))
+                }
+              </span>
+              {allPosts.length}
+            </h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="container border-top">
+        <div class="row">
+          <div class="column-100">
+            <h1 class="text-color-primary font-size-large">Something to think about</h1>
+            <a href="">SEE ALL</a>
+          </div>
+          <div>
+            <ul>
+              {
+                formattedPosts.map((post) => (
+                  <BlogPost title={post.frontmatter.title} />
+                ))
+              }
+              {
+                formattedPosts.map((post) => (
+                  <BlogPost title={post.frontmatter.description} />
+                ))
+              }
+              <!-- url={post.url} -->
+
+              {
+                formattedPosts.map((post) => (
+                  <BlogPost url={post.url} title="READ BLOG" />
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="container border-top">
+        <div class="row">
+          <div class="column-100">
+            <h1 class="text-color-primary">Something to think about</h1>
+            <a href="">SEE ALL</a>
+          </div>
+          <div>
+            <ul>
+              {
+                formattedPosts.map((post) => (
+                  <BlogPost title={post.frontmatter.title} />
+                ))
+              }
+              {
+                formattedPosts.map((post) => (
+                  <BlogPost title={post.frontmatter.description} />
+                ))
+              }
+              <!-- url={post.url} -->
+
+              {
+                formattedPosts.map((post) => (
+                  <BlogPost url={post.url} title="READ BLOG" />
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BlogLayout>

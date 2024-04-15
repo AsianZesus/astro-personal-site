@@ -1,21 +1,56 @@
 ---
 import Social from "./Social.astro";
+import { Icon } from "astro-icon/components";
 ---
 
-<footer>
-  <Social platform="twitter" username="AsianZesus" />
-  <Social platform="github" username="AsianZesus" />
-  <!-- <Social platform="" username="AsianZesus" /> -->
+<footer class="large-padding-top large-padding-bottom">
   <div class="container">
-    <div>
-      <p>Thank you for stopping by.</p>
+    <div class="row">
+      <div class="column-100">
+        <div class="nav-columns large-margin-bottom">
+          <div class="column">
+            <h2>Contact</h2>
+            <ul>
+              <li><a href="">GitHub</a></li>
+              <li><a href="">Twitter</a></li>
+              <li><a href="">LinkedIn</a></li>
+            </ul>
+          </div>
+          <div class="column">
+            <h2>Go</h2>
+            <ul>
+              <li>
+                <a href="https://read.cv/awal" target="_blank">read.cv</a>
+              </li>
+              <li>
+                <a href="/">About</a>
+              </li>
+              <li>
+                <a href="/blog/">Blog</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-      <p>You could be anywhere</p>
-      <div>
-        <p>but you are here, and it is now</p>
-        <p id="localeTime"></p>
+
+    <div class="row">
+      <div class="column-100">
+        <div class="nav-columns small-margin-bottom">
+          <div class="column">
+            <p>Thank you for stopping by.</p>
+          </div>
+          <div class="column">
+            <p>You could be anywhere</p>
+            <p>but you are here, and it is now</p>
+            <p id="localeTime"></p>
+            
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </footer>
+<!-- <Icon name="github" string="Ithub" />
+      <Social platform="twitter" username="AsianZesus" />
+      <Social platform="github" username="AsianZesus" /> -->

@@ -4,8 +4,10 @@ export function formatBlogPosts(
     filterOutDrafts = true,
     filterOutFuturePosts = true,
     sortByDate = true,
-    limit = undefined,
+    // Removed undefined type in below limit
+    limit,
   } = {}
+  
 ) {
   const filteredPosts = posts.reduce((acc, post) => {
     const { date, draft } = post.frontmatter;
